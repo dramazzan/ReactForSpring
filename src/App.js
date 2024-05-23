@@ -10,7 +10,6 @@ import BuyCar from "./BuyCar";
 import Login from "./Login";
 import Register from "./Register";
 import {useEffect, useState} from "react";
-import EdirCarForm from "./EditCarForm";
 
 export default function App() {
 

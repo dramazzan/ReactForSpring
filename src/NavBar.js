@@ -11,7 +11,6 @@ export default function NavBar(){
         setToken(user)
     })
 
-    console.log(token)
 
     const logout = () => {
         localStorage.removeItem('user')

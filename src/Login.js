@@ -27,7 +27,6 @@ export default function Login(){
         const response = await loginUser(user)
         if(response.success){
             navigate("/cars")
-            console.log(response)
         }else{
             navigate("/login")
             setMessage(response.error)
