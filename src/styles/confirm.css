@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.confirm_box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.confirm_box h2{
+    font-size: 35px;
+}
+
+.confirm_box b{
+    color: red;
+}
+
+.confirm_box .delete_controller{
+    display:flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.confirm_box .delete_controller button{
+    padding: 5px 10px;
+    font-size: 20px;
+    color: red;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s ease;
+
+    &:hover{
+        opacity: 0.8;
+
+    }
+
+}
+
+.delete_controller a{
+    text-decoration: none;
+    color: #007bff;
+}
+
+
+
+
+
+

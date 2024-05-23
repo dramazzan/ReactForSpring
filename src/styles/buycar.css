@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.buy_box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.buy_box h2{
+    font-size: 35px;
+}
+
+.buy_box b{
+    color: #007bff;
+}
+
+.buy_box .buy_controllers{
+    display:flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.buy_box .buy_controllers button{
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #35d035;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s ease;
+
+    &:hover{
+        opacity: 0.8;
+
+    }
+
+}
+
+.buy_controllers a{
+    text-decoration: none;
+    color: #007bff;
+}
+
+
+
+
+
+

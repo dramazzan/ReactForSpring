@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navigation_box {
+    width: 100%;
+    background: #212121;
+    color: #fff;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 2px 0px;
+}
+
+.navigation_box .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.navigation_box ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    list-style: none;
+    font-size: 20px;
+}
+
+.navigation_box a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+    position: relative;
+
+    &:hover{
+        opacity: 0.8;
+    }
+
+
+}
+
+
+.navigation_box a::after {
+    content: '';
+    bottom: -2px;
+    left: 0;
+    height: 0.5px;
+    background: #007bff;
+    width: 0;
+    position: absolute;
+    transition: 0.3s ease;
+}
+
+
+.navigation_box a:hover::after {
+    width: 100%;
+
+}
+
+
+.navigation_box .logo h1 {
+    font-size: 30px;
+}
+

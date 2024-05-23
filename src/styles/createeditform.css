@@ -4,7 +4,7 @@
 
 }
 
-.create_box{
+.create_edit_box{
     background: #222222;
     width: 100%;
     height: 100vh;
@@ -16,7 +16,7 @@
     font-size: 30px;
 }
 
-.create_box .container{
+.create_edit_box .container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +28,7 @@
     padding-top: 15px;
 }
 
-.create_box form{
+.create_edit_box form{
     width: 100%;
     height: 100%;
     display: flex;
@@ -37,14 +37,14 @@
     align-items: center;
 }
 
-.create_box form div{
+.create_edit_box form div{
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.create_box .submit_box{
+.create_edit_box .submit_box{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +62,7 @@
     margin-top: 20px;
 }
 
-.create_box input{
+.create_edit_box input{
     background: rgba(255,255,255,0.3);
     color: #fff;
     outline: none;
