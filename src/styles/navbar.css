@@ -30,7 +30,7 @@
     font-size: 20px;
 }
 
-.navigation_box a {
+.navigation_box .menu a {
     color: #fff;
     text-decoration: none;
     transition: 0.3s ease;
@@ -44,7 +44,7 @@
 }
 
 
-.navigation_box a::after {
+.navigation_box .menu a::after {
     content: '';
     bottom: -2px;
     left: 0;
@@ -56,13 +56,41 @@
 }
 
 
-.navigation_box a:hover::after {
+.navigation_box .menu a:hover::after {
     width: 100%;
 
 }
+
+.navigation_box .menu button{
+    border:none;
+    background: none;
+    color: #fff;
+    font-size: 20px;
+    position: relative;
+}
+
+.navigation_box .menu button:after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background: #007bff;
+    transition: 0.3s ease;
+    bottom: 0;
+    left: 0;
+}
+
+.navigation_box .menu button:hover::after{
+    width: 100%;
+}
+
 
 
 .navigation_box .logo h1 {
     font-size: 30px;
 }
 
+.navigation_box .logo a{
+    text-decoration: none;
+    color: #fff;
+}

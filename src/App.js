@@ -3,12 +3,28 @@ import CreateCarForm from "./CreateCarForm"
 import CarList from "./CarList";
 import CarDetails from "./CarDetails";
 import {getCar} from "./api";
-import EdirCarForm from "./EditCarForm";
+import EditCarForm from "./EditCarForm";
 import Home from "./Home";
 import Confirm from "./Confirm";
 import BuyCar from "./BuyCar";
+import Login from "./Login";
+import Register from "./Register";
+import {useEffect, useState} from "react";
+import EdirCarForm from "./EditCarForm";
 
 export default function App() {
+
+    const [token , setToken] = useState(null)
+
+    useEffect(()=>{
+        const user = localStorage.getItem('user')
+        setToken(user)
+    } , [])
+
+
+    useEffect(() => {
+
+    }, []);
 
     const routes = createBrowserRouter([
         {
@@ -16,8 +32,16 @@ export default function App() {
             element: <Home/>
         },
         {
+            path: '/login',
+            element: <Login/>
+        },
+        {
+            path:'/register',
+            element: <Register/>
+        },
+        {
             path: '/addcar',
-            element: <CreateCarForm/>
+            element: token ? <CreateCarForm/> : <Login/>
         },
         {
             path: '/cars',
@@ -25,7 +49,7 @@ export default function App() {
         },
         {
             path: '/car/:id',
-            element: <CarDetails />,
+            element:<CarDetails />,
             loader: async ({ params }) => {
                 return getCar(params.id);
             },
@@ -48,7 +72,7 @@ export default function App() {
         },
         {
             path:'/updatecar/:id',
-            element: <EdirCarForm/>,
+            element: token ?<EditCarForm/> : <Login/>,
             loader: async ({params})=>{
                 return  getCar(params.id);
             }
