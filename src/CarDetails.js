@@ -54,12 +54,12 @@ export default function CarDetails() {
                             </div>
                         )}
 
-                        <div className="confirm_box">
-                            <Outlet />
-                        </div>
+                    </div>
+                    <div className="confirm_box">
+                        <Outlet/>
                     </div>
                 </div>
             </div>
         </>
     );
-            }
+}

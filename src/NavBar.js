@@ -9,7 +9,7 @@ export default function NavBar(){
     useEffect(()=>{
         const user = localStorage.getItem('user')
         setToken(user)
-    })
+    }, [])
 
 
     const logout = () => {

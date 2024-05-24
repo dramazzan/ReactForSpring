@@ -1,4 +1,4 @@
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
+import {createBrowserRouter, RouterProvider, useLocation} from "react-router-dom"
 import CreateCarForm from "./CreateCarForm"
 import CarList from "./CarList";
 import CarDetails from "./CarDetails";
@@ -12,18 +12,16 @@ import Register from "./Register";
 import {useEffect, useState} from "react";
 
 export default function App() {
-
     const [token , setToken] = useState(null)
-
-    useEffect(()=>{
-        const user = localStorage.getItem('user')
-        setToken(user)
-    } , [])
 
 
     useEffect(() => {
-
+        const token = JSON.parse(localStorage.getItem('user') )
+        setToken(token || "");
     }, []);
+
+    const isAuthenticated = !!token;
+
 
     const routes = createBrowserRouter([
         {
@@ -40,7 +38,7 @@ export default function App() {
         },
         {
             path: '/addcar',
-            element: token ? <CreateCarForm/> : <Login/>
+            element: isAuthenticated ? <CreateCarForm/> : <Login/>
         },
         {
             path: '/cars',
@@ -71,7 +69,7 @@ export default function App() {
         },
         {
             path:'/updatecar/:id',
-            element: token ?<EditCarForm/> : <Login/>,
+            element: isAuthenticated ?<EditCarForm/> : <Login/>,
             loader: async ({params})=>{
                 return  getCar(params.id);
             }
