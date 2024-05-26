@@ -6,11 +6,17 @@ import {useEffect, useState} from "react";
 export default function CarDetails() {
     const car = useLoaderData()
     const [token , setToken] = useState(null)
+    const [role , setRole] = useState(false)
 
     useEffect(()=>{
-        const user = localStorage.getItem('user')
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
         setToken(user)
-    })
+        if(user.role === "ROLE_ADMIN"){
+            setRole(true)
+        }
+        }
+    } , [])
 
     return (
         <>
@@ -45,12 +51,17 @@ export default function CarDetails() {
                                         <Link to="/cars">Back</Link>
                                     )}
                                 </button>
-                                <button>
-                                    <Link to={`/updatecar/${car.id}`}>Edit</Link>
-                                </button>
-                                <button>
-                                    <Link to="confirm">Delete</Link>
-                                </button>
+                                {role ? (
+                                    <div className="admin_controller">
+                                        <button>
+                                            <Link to={`/updatecar/${car.id}`}>Edit</Link>
+                                        </button>
+                                        <button>
+                                            <Link to="confirm">Delete</Link>
+                                        </button>
+                                    </div>
+                                ) : null }
+
                             </div>
                         )}
 

@@ -25,11 +25,14 @@ export const deleteCar = async (id) => {
     return response.data;
 }
 
-export const buyCar = async (id) => {
-    const response = await axios.post(`http://localhost:8888/buycar/${id}` , null,{headers:authHeader()})
+export const buyCar = async ( carId) => {
+    const response = await axios.get(`http://localhost:8888/buy/${carId}` , {headers:authHeader()})
     return response.data;
 }
-
+export const getOrders = async () => {
+    const response = await axios.get(`http://localhost:8888/orders` , {headers:authHeader()})
+    return response.data;
+}
 const authHeader = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -67,7 +70,7 @@ export const registerUser = async (user) => {
         }
 
     } catch (error) {
-        return {success: false, error: error.response.data.error}
+        return {success: false, error: "Registration failed"}
     }
 }
 

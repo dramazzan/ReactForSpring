@@ -62,19 +62,19 @@ export default function Register() {
                     <form onSubmit={handleSubmit}>
                         <div className="username_box">
                             <label htmlFor="username">Username</label>
-                            <input type="text" name="username" id="username" onChange={handleUsername} />
+                            <input type="text" name="username" id="username" onChange={handleUsername} required/>
                         </div>
                         <div className="age_box">
                             <label htmlFor="age">Age</label>
-                            <input type="number" name="age" id="age" onChange={handleAge} />
+                            <input type="number" name="age" id="age" onChange={handleAge} required/>
                         </div>
                         <div className="password_box">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name="password" id="password" onChange={handlePassword} />
+                            <input type="password" name="password" id="password" onChange={handlePassword} required/>
                         </div>
                         <div className="confirm_password_box">
                             <label htmlFor="confirmPassword">Confirm Password</label>
-                            <input type="password" name="confirmPassword" id="confirmPassword" onChange={handleConfirmPassword} />
+                            <input type="password" name="confirmPassword" id="confirmPassword" onChange={handleConfirmPassword} required />
                         </div>
                         <div className="submit_box">
                             <button type="submit">Register</button>

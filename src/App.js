@@ -10,23 +10,33 @@ import BuyCar from "./BuyCar";
 import Login from "./Login";
 import Register from "./Register";
 import {useEffect, useState} from "react";
+import MyCars from "./MyCars";
+import Profile from "./Profile";
 
 export default function App() {
     const [token , setToken] = useState(null)
 
 
-    useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('user') )
-        setToken(token || "");
-    }, []);
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+            setToken(user.token)
+        }
+    } ,[])
 
-    const isAuthenticated = !!token;
+
+
+
 
 
     const routes = createBrowserRouter([
         {
             path: '/',
             element: <Home/>
+        },
+        {
+            path: '/profile',
+            element: <Profile/>
         },
         {
             path: '/login',
@@ -38,11 +48,15 @@ export default function App() {
         },
         {
             path: '/addcar',
-            element: isAuthenticated ? <CreateCarForm/> : <Login/>
+            element: token  ? <CreateCarForm/> : <Login/>
         },
         {
             path: '/cars',
             element: <CarList/>,
+        },
+        {
+            path: '/orders',
+            element: <MyCars/>,
         },
         {
             path: '/car/:id',
@@ -69,7 +83,7 @@ export default function App() {
         },
         {
             path:'/updatecar/:id',
-            element: isAuthenticated ?<EditCarForm/> : <Login/>,
+            element: token  ? <EditCarForm/> : <Login/>,
             loader: async ({params})=>{
                 return  getCar(params.id);
             }

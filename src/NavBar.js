@@ -1,22 +1,7 @@
 import './styles/navbar.css'
-import {Link, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function NavBar(){
-    const navigate = useNavigate()
-    const [token , setToken] = useState(null)
-
-    useEffect(()=>{
-        const user = localStorage.getItem('user')
-        setToken(user)
-    }, [])
-
-
-    const logout = () => {
-        localStorage.removeItem('user')
-        navigate('/login')
-    }
-
 
 
     return (
@@ -37,13 +22,7 @@ export default function NavBar(){
                                 <Link to="/addcar">add</Link>
                             </li>
                             <li>
-                                {
-                                    token? (
-                                        <button onClick={logout}>logout</button>
-                                    ) : (
-                                        <Link to="/login">login</Link>
-                                    )
-                                }
+                                    <Link to="/profile">profile</Link>
                             </li>
                         </ul>
                     </div>

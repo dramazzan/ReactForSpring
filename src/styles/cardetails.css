@@ -74,3 +74,10 @@
 .car_details_box .link_box a{
     color: #d52222;
 }
+
+.car_details_box .admin_controller{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+

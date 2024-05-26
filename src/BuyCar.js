@@ -1,11 +1,20 @@
 import {Link, useLoaderData, useNavigate} from "react-router-dom";
 import {buyCar} from "./api";
 import './styles/buycar.css'
+import {useEffect, useState} from "react";
 
 export default function BuyCar(){
 
     const car = useLoaderData()
     const navigate = useNavigate()
+    const [user  , setUser] = useState({})
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+            setUser(user)
+        }
+    }, []);
 
     const handleClick = async () => {
         const response = await buyCar(car.id)

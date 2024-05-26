@@ -44,20 +44,19 @@ export default function EdirCarForm(){
 
                         <div className="brand_box">
                             <label htmlFor="brand">Brand</label>
-                            <input value={updatedCar.brand} onChange={handleBrand} type="text" id="brand" name="brand"/>
+                            <input value={updatedCar.brand} onChange={handleBrand} type="text" id="brand" name="brand" required/>
                         </div>
                         <div className="model_box">
                             <label htmlFor="model">Model</label>
-                            <input value={updatedCar.model} onChange={handleModel} type="text" id="model" name="model"/>
+                            <input value={updatedCar.model} onChange={handleModel} type="text" id="model" name="model" required/>
                         </div>
                         <div className="year_box">
                             <label htmlFor="year">Year</label>
-                            <input value={updatedCar.year} onChange={handleYear} type="number" id="year" name="year"/>
+                            <input value={updatedCar.year} onChange={handleYear} type="number" id="year" name="year" required/>
                         </div>
                         <div className="price_box">
                             <label htmlFor="price">Price</label>
-                            <input value={updatedCar.price} onChange={handlePrice} type="number" id="price"
-                                   name="price"/>
+                            <input value={updatedCar.price} onChange={handlePrice} type="number" id="price" name="price" required/>
                         </div>
                         <div className="submit_box">
                             <button type="submit">Edit</button>
