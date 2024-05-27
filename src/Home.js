@@ -24,7 +24,7 @@ export default function Home(){
                                 that fits your style and budget.
                             </div>
                         </div>
-                        <img src={porcheImage}/>
+                        <img src={porcheImage} alt="image"/>
                     </div>
                 </div>
                 <div className="recomended_box">

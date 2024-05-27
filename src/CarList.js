@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {getCars} from "./api";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import NavBar from "./NavBar";
 import './styles/carlist.css'
+import 'react-notifications/lib/notifications.css'
+import {NotificationManager , NotificationContainer} from "react-notifications";
 
 export default function CarList() {
     const [cars, setCars] = useState([]);
+    const location = useLocation()
 
     useEffect(() => {
         const fetchCars = async () => {
@@ -19,12 +22,23 @@ export default function CarList() {
         };
 
         fetchCars();
+
+
     }, []);
+
+    useEffect(() => {
+        if (location.state) {
+            NotificationManager.success(location.state.message, location.state.title, 2000)
+        }
+    }, [location])
+
+
 
     return (
         <>
             <NavBar/>
             <div className="car_list_box">
+                <NotificationContainer/>
                 <div className="container">
                     <table>
                         <thead>

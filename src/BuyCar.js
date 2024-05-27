@@ -19,7 +19,7 @@ export default function BuyCar(){
     const handleClick = async () => {
         const response = await buyCar(car.id)
         console.log(response)
-        navigate('/cars')
+        navigate('/cars' , {state:{message: `${car.brand} purchased` , title: "Buy car"}})
     }
 
 

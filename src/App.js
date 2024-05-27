@@ -1,4 +1,4 @@
-import {createBrowserRouter, RouterProvider, useLocation} from "react-router-dom"
+import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import CreateCarForm from "./CreateCarForm"
 import CarList from "./CarList";
 import CarDetails from "./CarDetails";
@@ -12,15 +12,19 @@ import Register from "./Register";
 import {useEffect, useState} from "react";
 import MyCars from "./MyCars";
 import Profile from "./Profile";
+import AdminPage from "./AdminPage";
 
 export default function App() {
     const [token , setToken] = useState(null)
-
+    const [isAdmin , setIsAdmin] = useState(false)
 
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem('user'))
         if(user){
             setToken(user.token)
+            if(user.role === "ROLE_ADMIN"){
+                setIsAdmin(true)
+            }
         }
     } ,[])
 
@@ -33,6 +37,10 @@ export default function App() {
         {
             path: '/',
             element: <Home/>
+        },
+        {
+            path: '/admin',
+            element: isAdmin ? <AdminPage/> : <Home/>
         },
         {
             path: '/profile',
@@ -59,7 +67,7 @@ export default function App() {
             element: <MyCars/>,
         },
         {
-            path: '/car/:id',
+            path: '/car/:id/',
             element:<CarDetails />,
             loader: async ({ params }) => {
                 return getCar(params.id);
@@ -83,7 +91,7 @@ export default function App() {
         },
         {
             path:'/updatecar/:id',
-            element: token  ? <EditCarForm/> : <Login/>,
+            element: token ? <EditCarForm/> : <Login/>,
             loader: async ({params})=>{
                 return  getCar(params.id);
             }

@@ -1,12 +1,26 @@
-import {useLoaderData, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useLoaderData,  useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {updateCar} from "./api";
 import './styles/createeditform.css'
 
-export default function EdirCarForm(){
+export default function EditCarForm(){
 
     const car = useLoaderData();
     const navigate = useNavigate()
+    const [role, setRole] = useState(false);
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            if (user.role !== "ROLE_ADMIN") {
+                navigate('/');
+            } else {
+                setRole(true);
+            }
+        } else {
+            navigate('/');
+        }
+    }, [navigate]);
 
     const [updatedCar , setUpdatedCar] = useState({
         brand:car.brand,
@@ -32,7 +46,11 @@ export default function EdirCarForm(){
         e.preventDefault();
         const response = await updateCar(car.id , updatedCar)
         console.log(response)
-        navigate('/car/' + car.id)
+        navigate('/car/' + car.id ,{ state: { message: `${car.brand} updated`, title: "Update Good" } } )
+    }
+
+    if (!role) {
+        return null;
     }
 
     return(

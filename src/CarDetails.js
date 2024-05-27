@@ -1,27 +1,37 @@
-import {Link, Outlet, useLoaderData} from "react-router-dom";
+import { Link, Outlet, useLoaderData, useLocation } from "react-router-dom";
 import NavBar from "./NavBar";
-import './styles/cardetails.css'
-import {useEffect, useState} from "react";
+import './styles/cardetails.css';
+import { useEffect, useState } from "react";
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 export default function CarDetails() {
-    const car = useLoaderData()
-    const [token , setToken] = useState(null)
-    const [role , setRole] = useState(false)
+    const car = useLoaderData();
+    const [token, setToken] = useState(null);
+    const [role, setRole] = useState(false);
+    const location = useLocation();
 
-    useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(user){
-        setToken(user)
-        if(user.role === "ROLE_ADMIN"){
-            setRole(true)
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            setToken(user);
+            if (user.role === "ROLE_ADMIN") {
+                setRole(true);
+            }
         }
+    }, []);
+
+    useEffect(() => {
+        if (location.state && location.state.message && location.state.title) {
+            NotificationManager.success(location.state.message, location.state.title, 2000);
         }
-    } , [])
+    }, [location.state]);
 
     return (
         <>
             <NavBar />
             <div className="car_details_box">
+                <NotificationContainer />
                 <div className="container">
                     <div className="car_box">
                         <div className="image_box">
@@ -45,7 +55,7 @@ export default function CarDetails() {
                         ) : (
                             <div className="controllers">
                                 <button>
-                                    {car.amount > 0 ? (
+                                    {car.amount > 0 && !role ? (
                                         <Link to="buy">Buy</Link>
                                     ) : (
                                         <Link to="/cars">Back</Link>
@@ -60,14 +70,12 @@ export default function CarDetails() {
                                             <Link to="confirm">Delete</Link>
                                         </button>
                                     </div>
-                                ) : null }
-
+                                ) : null}
                             </div>
                         )}
-
                     </div>
                     <div className="confirm_box">
-                        <Outlet/>
+                        <Outlet />
                     </div>
                 </div>
             </div>
