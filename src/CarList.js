@@ -46,7 +46,7 @@ export default function CarList() {
                             <th>Brand</th>
                             <th>Model</th>
                             <th>Year</th>
-                            <th>Amount</th>
+                            <th>State</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -56,7 +56,7 @@ export default function CarList() {
                                 <td>{car.brand}</td>
                                 <td>{car.model}</td>
                                 <td>{car.year}</td>
-                                <td>{car.amount}</td>
+                                <td>{car.state}</td>
                                 <td>
                                     <Link to={"/car/" + car.id}>Details</Link>
                                 </td>

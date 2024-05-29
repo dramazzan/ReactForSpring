@@ -1,8 +1,8 @@
 import {Link, useLoaderData, useNavigate} from "react-router-dom";
-import {buyCar} from "./api";
 import './styles/buycar.css'
+import {repair} from "./api";
 
-export default function BuyCar(){
+export default function Repair(){
 
     const car = useLoaderData()
     const navigate = useNavigate()
@@ -10,22 +10,22 @@ export default function BuyCar(){
 
 
     const handleClick = async () => {
-        const response = await buyCar(car.id)
+        const response = await repair(car.id)
         console.log(response)
-        navigate('/cars' , {state:{message: `${car.brand} purchased` , title: "Buy car"}})
+        navigate('/cars' , {state:{message: `${car.brand} sent for repairs` , title: "Repair car"}})
     }
 
 
     return(
         <>
             <div className="buy_box">
-                <h2>You definitely want to buy <b>{car.brand}</b></h2>
+                <h2>DO you really want to send your car in for Repairs?<b>{car.brand}</b></h2>
                 <div className="buy_controllers">
                     <button>
                         <Link to={"/car/"+car.id}>Back</Link>
                     </button>
                     <button onClick={handleClick}>
-                        Buy
+                        Repair
                     </button>
                 </div>
             </div>

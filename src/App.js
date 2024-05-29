@@ -7,30 +7,11 @@ import EditCarForm from "./EditCarForm";
 import Home from "./Home";
 import Confirm from "./Confirm";
 import BuyCar from "./BuyCar";
-import Login from "./Login";
-import Register from "./Register";
-import {useEffect, useState} from "react";
-import MyCars from "./MyCars";
-import Profile from "./Profile";
-import AdminPage from "./AdminPage";
+import TestDrive from "./TestDrive";
+import Repair from "./Repair";
+
 
 export default function App() {
-    const [token , setToken] = useState(null)
-    const [isAdmin , setIsAdmin] = useState(false)
-
-    useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(user){
-            setToken(user.token)
-            if(user.role === "ROLE_ADMIN"){
-                setIsAdmin(true)
-            }
-        }
-    } ,[])
-
-
-
-
 
 
     const routes = createBrowserRouter([
@@ -39,61 +20,55 @@ export default function App() {
             element: <Home/>
         },
         {
-            path: '/admin',
-            element: isAdmin ? <AdminPage/> : <Home/>
-        },
-        {
-            path: '/profile',
-            element: <Profile/>
-        },
-        {
-            path: '/login',
-            element: <Login/>
-        },
-        {
-            path:'/register',
-            element: <Register/>
-        },
-        {
             path: '/addcar',
-            element: token  ? <CreateCarForm/> : <Login/>
+            element: <CreateCarForm/>
         },
         {
             path: '/cars',
             element: <CarList/>,
         },
         {
-            path: '/orders',
-            element: <MyCars/>,
-        },
-        {
             path: '/car/:id/',
-            element:<CarDetails />,
-            loader: async ({ params }) => {
+            element: <CarDetails/>,
+            loader: async ({params}) => {
                 return getCar(params.id);
             },
             children: [
                 {
                     path: 'confirm',
-                    element: <Confirm />,
-                    loader: async ({ params }) => {
+                    element: <Confirm/>,
+                    loader: async ({params}) => {
                         return getCar(params.id);
                     }
                 },
                 {
                     path: 'buy',
-                    element: <BuyCar />,
-                    loader: async ({ params }) => {
+                    element: <BuyCar/>,
+                    loader: async ({params}) => {
+                        return getCar(params.id);
+                    }
+                },
+                {
+                    path: 'test',
+                    element: <TestDrive/>,
+                    loader: async ({params}) => {
+                        return getCar(params.id);
+                    }
+                },
+                {
+                    path: 'repair',
+                    element: <Repair/>,
+                    loader: async ({params}) => {
                         return getCar(params.id);
                     }
                 }
             ]
         },
         {
-            path:'/updatecar/:id',
-            element: token ? <EditCarForm/> : <Login/>,
-            loader: async ({params})=>{
-                return  getCar(params.id);
+            path: '/updatecar/:id',
+            element: <EditCarForm/> ,
+            loader: async ({params}) => {
+                return getCar(params.id);
             }
         }
     ])

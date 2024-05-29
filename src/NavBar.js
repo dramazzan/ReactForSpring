@@ -22,7 +22,7 @@ export default function NavBar(){
                                 <Link to="/addcar">add</Link>
                             </li>
                             <li>
-                                    <Link to="/profile">profile</Link>
+                                    <Link to="">profile</Link>
                             </li>
                         </ul>
                     </div>
